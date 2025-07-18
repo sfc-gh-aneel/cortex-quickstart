@@ -118,16 +118,17 @@ Follow this sequence for optimal learning and demonstration:
 ### 🥇 **Start Here**: Foundation Setup
 1. **[Setup](setup/)** - Run initial database and warehouse setup
 2. **[Load Sample Data](setup/load-sample-data.sql)** - Populate with realistic retirement plan data
+3. **[Additional Documents](setup/additional-sample-documents.sql)** - 15 comprehensive document types for testing
 
 ### 🥈 **Core AI Features** (Build in this order)
-3. **[Text Extraction & Chunking](text-extraction-chunking/)** - Process documents first (provides data for other features)
-4. **[Vector Embedding](vector-embedding/)** - Create embeddings (requires chunked text from step 3)
-5. **[Structured Data Processing](structured-data-processing/)** - Natural language queries (independent)
+4. **[Text Extraction & Chunking](text-extraction-chunking/)** - Process documents first (provides data for other features)
+5. **[Vector Embedding](vector-embedding/)** - Create embeddings (requires chunked text from step 4)
+6. **[Structured Data Processing](structured-data-processing/)** - Natural language queries (independent)
 
 ### 🥉 **Advanced Integration** 
-6. **[Vector Search Retrieval](vector-search-retrieval/)** - Hybrid search (requires embeddings from step 4)
-7. **[Orchestration](orchestration/)** - Unified interface (requires all previous steps)
-8. **[MCP Server Integration](mcp-server-integration/)** - Advanced workflows (optional)
+7. **[Vector Search Retrieval](vector-search-retrieval/)** - Hybrid search (requires embeddings from step 5)
+8. **[Orchestration](orchestration/)** - Unified interface (requires all previous steps)
+9. **[MCP Server Integration](mcp-server-integration/)** - Advanced workflows (optional)
 
 ### 🎯 **Demo Ready!**
 - **[Quick Demo](QUICKSTART.md)** - 5-minute end-to-end test

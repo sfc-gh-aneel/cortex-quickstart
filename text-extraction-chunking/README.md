@@ -79,13 +79,17 @@ text-extraction-chunking/
 @text-extraction-chunking/setup.sql
 ```
 
-### Step 2: Upload Sample Documents
+### Step 2: Load Additional Sample Documents
 
-```bash
-# Use SnowSQL or Snowflake web interface to upload
-PUT file://sample-documents/spd-examples/* @RETIREMENT_PLAN_AI.DOCUMENTS.PLAN_DOCUMENTS;
-PUT file://sample-documents/forms/* @RETIREMENT_PLAN_AI.DOCUMENTS.PARTICIPANT_COMMS;
-PUT file://sample-documents/compliance/* @RETIREMENT_PLAN_AI.DOCUMENTS.REGULATORY_DOCS;
+```sql
+-- Load comprehensive document collection (15 realistic documents)
+@setup/additional-sample-documents.sql
+
+-- This includes:
+-- - 3 SPDs (TechCorp, HealthPlus, EduCare plans)
+-- - 3 Participant forms (enrollment, loan application, quarterly statement)  
+-- - 4 Compliance documents (audit report, DOL notices, investment policy)
+-- - 2 Investment materials (fund fact sheets, committee reviews)
 ```
 
 ### Step 3: Test Document Processing
@@ -105,19 +109,26 @@ GROUP BY DOCUMENT_TYPE;
 
 ## 🎪 Demo Scenarios
 
-### Scenario 1: Plan Document Analysis
-**Use Case**: Extract key information from Summary Plan Descriptions
+### Scenario 1: Cross-Plan Document Analysis
+**Use Case**: Compare plan features across different document types
 
 ```sql
--- Find eligibility requirements across all plans
+-- Find eligibility requirements across all three plan types
 SELECT CORTEX.SEARCH(
     'RETIREMENT_DOC_SEARCH',
-    'eligibility requirements age service hours',
+    'eligibility requirements age service hours vesting',
     {
         'filter': {'document_type': 'SPD'},
         'limit': 5
     }
-) AS eligibility_info;
+) AS cross_plan_eligibility;
+
+-- Compare 401(k) vs 403(b) vs Pension plan features
+SELECT CORTEX.SEARCH(
+    'RETIREMENT_DOC_SEARCH', 
+    'TechCorp HealthPlus EduCare plan differences contributions matching',
+    {'limit': 8}
+) AS plan_comparison;
 ```
 
 ### Scenario 2: Form Processing with Document AI
@@ -147,19 +158,30 @@ FROM (
 );
 ```
 
-### Scenario 3: Compliance Document Monitoring
-**Use Case**: Track regulatory filing requirements
+### Scenario 3: Multi-Document Type Intelligence
+**Use Case**: Extract insights across different document categories
 
 ```sql
--- Find all mentions of IRS deadlines and requirements
+-- Find loan-related information across forms and policies
 SELECT CORTEX.SEARCH(
     'RETIREMENT_DOC_SEARCH',
-    'IRS deadline filing requirement Form 5500',
-    {
-        'filter': {'document_type': 'Compliance'},
-        'limit': 10
-    }
-) AS compliance_requirements;
+    'participant loan maximum amount repayment terms',
+    {'limit': 5}
+) AS loan_guidance;
+
+-- Investment committee oversight and fund performance
+SELECT CORTEX.SEARCH(
+    'RETIREMENT_DOC_SEARCH',
+    'investment committee performance monitoring fund evaluation',
+    {'limit': 5}
+) AS investment_oversight;
+
+-- Fee disclosure and cost analysis
+SELECT CORTEX.SEARCH(
+    'RETIREMENT_DOC_SEARCH',
+    'fees expenses expense ratios administrative costs',
+    {'limit': 5}
+) AS fee_analysis;
 ```
 
 ## 🎯 Customization Guide

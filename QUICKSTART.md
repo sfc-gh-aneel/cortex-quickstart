@@ -28,9 +28,12 @@ SET WAREHOUSE_SIZE = 'MEDIUM';
 
 -- 3. Load realistic sample data
 @setup/load-sample-data.sql
+
+-- 4. Load additional documents for comprehensive testing
+@setup/additional-sample-documents.sql
 ```
 
-**🎉 You now have**: 22 sample participants, 6 investment funds, 5 plan documents, and full AI capabilities!
+**🎉 You now have**: 22 sample participants, 6 investment funds, 15 plan documents, and full AI capabilities!
 
 ## 🧪 Step 2: Test Each AI Feature (3 minutes)
 
@@ -140,7 +143,7 @@ SELECT
 FROM DOCUMENTS.DOCUMENT_CHUNKS WHERE embedding IS NOT NULL;
 ```
 
-**Expected Results**: 22 participants, 5+ documents, 15+ embeddings
+**Expected Results**: 22 participants, 15+ documents, 50+ embeddings
 
 ## 🔥 Next Steps
 
