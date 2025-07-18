@@ -22,26 +22,30 @@ This repository covers **6 game-changing AI capabilities** that will transform h
 - **ACCOUNTADMIN** role access
 - Basic SQL knowledge (we'll guide you through the rest!)
 
-### 🎬 Choose Your Adventure
+### 🎬 Recommended Learning Path
 
-Pick any feature that excites you most - each template is self-contained and ready to run:
+Follow the execution order below or jump to [QUICKSTART.md](QUICKSTART.md) for immediate results:
 
 ```bash
-# 1. 📄 Start with Document AI (Great for demos!)
+# Step 1: Foundation (Required)
+cd setup/
+# Run initial-setup.sql then load-sample-data.sql
+
+# Step 2: Document Processing (Start here for AI features)
 cd text-extraction-chunking/
-# Follow the README to process your first PDF in minutes
+# Process PDFs and documents with AI
 
-# 2. 🔍 Try Semantic Search (Mind-blowing for end users!)
-cd vector-search-retrieval/
-# Build Google-like search for your company data
+# Step 3: Vector Intelligence  
+cd vector-embedding/
+# Create semantic embeddings for search
 
-# 3. 💬 Talk to Your Database (The crowd pleaser!)
+# Step 4: Natural Language Interface
 cd structured-data-processing/
-# Ask questions in English, get insights instantly
+# Ask questions in plain English
 
-# 4. 🔗 Connect Everything (The enterprise wow factor!)
+# Step 5: Unified Power (The enterprise wow factor!)
 cd orchestration/
-# Single API for all your data sources
+# Single API combining all AI capabilities
 ```
 
 ## 📁 Repository Structure
@@ -59,24 +63,25 @@ cd orchestration/
 
 ## 🔧 Initial Setup
 
-1. **Clone and Configure**
+1. **Configure Your Environment**
    ```bash
    git clone <your-repo-url>
    cd cortex-quickstart
-   cp setup/config.template.sql setup/config.sql
-   # Edit config.sql with your Snowflake details
+   # Edit setup/config.template.sql with your Snowflake account details
    ```
 
-2. **Run Setup Script**
+2. **Deploy Foundation**
    ```sql
-   -- Execute setup/initial-setup.sql in your Snowflake worksheet
-   -- This creates databases, schemas, and enables Cortex features
+   -- Execute in your Snowflake worksheet:
+   @setup/initial-setup.sql
+   @setup/load-sample-data.sql
    ```
 
-3. **Choose Your First Demo**
-   - **New to AI?** → Start with `text-extraction-chunking/`
-   - **Want to impress stakeholders?** → Jump to `structured-data-processing/`
-   - **Building a product?** → Explore `orchestration/`
+3. **Verify Installation**
+   ```sql
+   -- Quick verification:
+   SELECT * FROM RETIREMENT_PLAN_AI.ANALYTICS.PARTICIPANT_OVERVIEW LIMIT 5;
+   ```
 
 ## 🎨 Customization Made Easy
 
@@ -106,13 +111,27 @@ Every template includes:
 - 💬 **Questions?** Open a GitHub issue with your Snowflake setup details
 - 🚀 **Want to contribute?** See our [contribution guide](CONTRIBUTING.md)
 
-## 🏆 Success Stories
+## 📋 Execution Order
 
-> *"Went from 'What is Cortex?' to processing 10,000 PDFs in 30 minutes!"*
-> 
-> *"Our executives were amazed when I showed them talking to our sales database in plain English."*
-> 
-> *"The hybrid search found insights in our documents that we never knew existed."*
+Follow this sequence for optimal learning and demonstration:
+
+### 🥇 **Start Here**: Foundation Setup
+1. **[Setup](setup/)** - Run initial database and warehouse setup
+2. **[Load Sample Data](setup/load-sample-data.sql)** - Populate with realistic retirement plan data
+
+### 🥈 **Core AI Features** (Build in this order)
+3. **[Text Extraction & Chunking](text-extraction-chunking/)** - Process documents first (provides data for other features)
+4. **[Vector Embedding](vector-embedding/)** - Create embeddings (requires chunked text from step 3)
+5. **[Structured Data Processing](structured-data-processing/)** - Natural language queries (independent)
+
+### 🥉 **Advanced Integration** 
+6. **[Vector Search Retrieval](vector-search-retrieval/)** - Hybrid search (requires embeddings from step 4)
+7. **[Orchestration](orchestration/)** - Unified interface (requires all previous steps)
+8. **[MCP Server Integration](mcp-server-integration/)** - Advanced workflows (optional)
+
+### 🎯 **Demo Ready!**
+- **[Quick Demo](QUICKSTART.md)** - 5-minute end-to-end test
+- **[Stakeholder Presentations](DEMO_SCENARIOS.md)** - Professional demo scripts
 
 ---
 
